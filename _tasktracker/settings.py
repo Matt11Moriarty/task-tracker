@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "api",
+    "sharing",
+    "tasks",
+    "users",
+    "weekplanner",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -77,6 +82,10 @@ DATABASES = {
     "default": {
         "ENGINE": "djongo",
         "NAME": "task-tracker",
+        "ENFORCE_SCHEMA": False,
+        "CLIENT": {
+            "host: mongodb+srv://matt11moriarty:Matty.Mo11@tasktracker.u1iggax.mongodb.net/?retryWrites=true&w=majority&appName=TaskTracker"
+        }
     }
 }
 
