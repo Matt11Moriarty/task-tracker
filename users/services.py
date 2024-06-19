@@ -1,17 +1,17 @@
 from _tasktracker.mymongodb import MongoDb
 from pymongo.errors import ConnectionFailure, DuplicateKeyError
+import json
 
 class UserService:
 
-    def add_user(data):
+    @classmethod
+    def add_user(cls, data):
         db = MongoDb.get_db()
         try:
             users_collection = db['users']
             result = users_collection.insert_one(data)
-            return {
-                "status": "success",
-                "inserted_id": "{data.id}"
-            }
+
+            return result
         except DuplicateKeyError:
             return {"status": "fail", "message": "User already exists"}
         except Exception as e:
