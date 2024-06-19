@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "tasks",
     "users",
     "weekplanner",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -74,17 +75,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "_tasktracker.wsgi.application"
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
-        "ENGINE": "djongo",
         "NAME": "task-tracker",
         "ENFORCE_SCHEMA": False,
         "CLIENT": {
-            "host: mongodb+srv://matt11moriarty:Matty.Mo11@tasktracker.u1iggax.mongodb.net/?retryWrites=true&w=majority&appName=TaskTracker"
+            "host": os.getenv("DB_CONNECTION_STRING")
         }
     }
 }
